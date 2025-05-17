@@ -43,15 +43,16 @@ function createElement() {
     container.innerHTML = resultData.map((val, i) => {
       return ` <div class="list_box">
                   <div class="paraContainer">
+                    <p>${i+1}.</p>
                     <p>${val.name}</p>
                     <p>${val.profession}</p>
                     <p>${val.age}</p>
                   </div>
-                  <button onclick="handleDelete('${val._id}')" >Delete</button>
+                  <button onclick="handleDelete('${val._id}')" >Delete User</button>
                 </div> `;
-    });
+    }).join("");
   } else {
-    container.innerHTML = `<div class="data_not_found" >Data not found</div>`;
+    container.innerHTML = `<div class="data_not_found" >You have 0 Employees.</div>`;
   }
 }
 createElement();
