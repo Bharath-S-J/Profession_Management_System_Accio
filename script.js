@@ -39,20 +39,22 @@ function handleDelete(id) {
 function createElement() {
   let resultData = JSON.parse(localStorage.getItem("data"));
 
-  if (resultData.length > 0) {
-    container.innerHTML = resultData.map((val, i) => {
-      return ` <div class="list_box">
-                  <div class="paraContainer">
-                    <p>${i+1}.</p>
-                    <p>${val.name}</p>
-                    <p>${val.profession}</p>
-                    <p>${val.age}</p>
-                  </div>
-                  <button onclick="handleDelete('${val._id}')" >Delete User</button>
-                </div> `;
-    }).join("");
-  } else {
-    container.innerHTML = `<div class="data_not_found" >You have 0 Employees.</div>`;
+  if (!Array.isArray(resultData) || resultData.length === 0) {
+    container.innerHTML = `<div class="data_not_found">You have 0 Employees.</div>`;
+    return;
   }
+
+  container.innerHTML = resultData.map((val, i) => {
+    return ` <div class="list_box">
+                <div class="paraContainer">
+                  <p>${i + 1}.</p>
+                  <p>${val.name}</p>
+                  <p>${val.profession}</p>
+                  <p>${val.age}</p>
+                </div>
+                <button onclick="handleDelete('${val._id}')">Delete User</button>
+              </div> `;
+  }).join("");
 }
+
 createElement();
